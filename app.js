@@ -1,13 +1,13 @@
-//list of requires
-let express = require('express');
-let chalk = require('chalk');
-let debug = require('debug')('app');
-let morgan = require('morgan');
-let path = require('path');
+// list of requires
+const express = require('express');
+const chalk = require('chalk');
+const debug = require('debug')('app');
+const morgan = require('morgan');
+const path = require('path');
 
 // stuff doing outside of requires
-let app = express();
-
+const app = express();
+const port = process.env.PORT || 5000;
 app.use(morgan('tiny'));
 app.use(express.static(path.join(__dirname, '/public/')));
 app.use('/css', express.static(path.join(__dirname, '/node_modules/bootstrap/dist/css/')));
@@ -16,9 +16,9 @@ app.use('/js', express.static(path.join(__dirname, '/node_modules/jquery/dist/')
 
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, "views",  "/index.html"));
+  res.sendFile(path.join(__dirname, 'views', '/index.html'));
 });
 
-app.listen(5000, () => {
-  debug(`Listneing on port ${chalk.green(5000)}`);
+app.listen(port, () => {
+  debug(`Listneing at port ${chalk.green(port)}`);
 });
